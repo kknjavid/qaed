@@ -40,7 +40,9 @@ dependencies:
 flutter_native_splash:
   android: true
   ios: true
+  web: true
   background_image: "assets/splashscreen.png"
+  background_image_dark: "assets/darkSplashScreen.png"
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/splashscreen.png
+    - assets/darkSplashScreen.png
     - assets/bayanat.db
 
   # An image asset can refer to one or more resolution-specific "variants", see
