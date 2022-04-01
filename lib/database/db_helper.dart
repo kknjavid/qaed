@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:qaed/database/sokhan_model.dart';
+import 'package:qaed/database/article_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -14,6 +14,7 @@ class DbHelper {
   static const id = "id";
   static const _title = "title";
   static const _detail = "detail";
+  static const _year = "year";
   static const _favorite = "favorite";
 
   Future get _db async => _database ?? await _initDb();
@@ -38,12 +39,14 @@ class DbHelper {
       return await openDatabase(path);
     }
   }
-    Future<List<Sokhan>> getAllSokhan() async {
+    Future<List<Article>> getAllArticle() async {
     Database _dbClient = await _db;
     var allSokhan = await _dbClient.query(_table);
-    List<Sokhan> allSokhanList = allSokhan.isNotEmpty
-        ? allSokhan.map((e) => Sokhan.fromMap(e)).toList()
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
     return allSokhanList;
+
   }
+
 }
