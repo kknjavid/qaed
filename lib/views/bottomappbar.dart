@@ -15,11 +15,11 @@ class CustomBottomAppBar extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.bookmark),
+                icon: const Icon(Icons.home),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.home),
+                icon: const Icon(Icons.bookmark),
               ),
               IconButton(
                 onPressed: () {},

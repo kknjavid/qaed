@@ -11,7 +11,7 @@ class DbHelper {
   Database? _database;
   static const _dbName = "bayanat.db";
   static const _table = "bayanat";
-  static const id = "id";
+  static const _id = "id";
   static const _title = "title";
   static const _detail = "detail";
   static const _year = "year";
@@ -39,14 +39,23 @@ class DbHelper {
       return await openDatabase(path);
     }
   }
-    Future<List<Article>> getAllArticle() async {
+
+  Future<List<Article>> getAllArticle() async {
     Database _dbClient = await _db;
     var allSokhan = await _dbClient.query(_table);
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
+    _dbClient.close();
     return allSokhanList;
-
   }
 
+  Future<List<Article>> getCountOfArticlesInPerYear() async {
+    Database _dbClient = await _db;
+    var allSokhan = await _dbClient.query(_table, columns: [_year]);
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
+        : [];
+    return allSokhanList;
+  }
 }

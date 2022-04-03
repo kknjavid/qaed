@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("نرم افزار قائد"),
+        
       ),
       body: const YearsScreen(),
       bottomNavigationBar: const CustomBottomAppBar(),
