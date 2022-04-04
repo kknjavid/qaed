@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qaed/database/article_model.dart';
+import 'package:qaed/global/global_var.dart';
 import 'package:qaed/views/article_content.dart';
 
 import '../global/rout_with_transition.dart';
@@ -8,10 +9,11 @@ import '../global/rtl_material_app_with_theme.dart';
 
 class YearsListScreen extends StatelessWidget {
   const YearsListScreen(
-      {Key? key, required this.imgUrl, required this.articles})
+      {Key? key, required this.imgUrl, required this.articles, required this.curYear})
       : super(key: key);
   final String imgUrl;
   final List<Article> articles;
+  final int curYear;
   @override
   Widget build(BuildContext context) {
     return rtlMaterialAppWithTheme(
@@ -30,9 +32,9 @@ class YearsListScreen extends StatelessWidget {
               primary: false,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image(image: AssetImage(imgUrl), fit: BoxFit.cover),
-                title: const Text(
-                  "سال تولید پشتیبانی ها و مانع زدایی ها",
-                  style: TextStyle(
+                title: Text(
+                 curYear!=33? "سال ${ yearsNameList[curYear]}":yearsNameList[curYear],
+                  style: const TextStyle(
                       fontSize: 12,
                       shadows: [Shadow(color: Colors.black, blurRadius: 4)]),
                 ),

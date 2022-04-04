@@ -62,8 +62,10 @@ class YearsScreen extends StatelessWidget {
                       horzentalOffset: -1,
                       verticalOffset: 0,
                       widget: YearsListScreen(
+                        curYear: index,
                           articles: articles,
                           imgUrl: "assets/pics/${curYear - index}.jpg"),
+                          
                     ),
                   ),
                 );

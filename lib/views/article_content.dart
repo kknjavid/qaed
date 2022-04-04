@@ -26,11 +26,19 @@ class ArticleContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(child: SelectableText(article.title, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),), margin: const EdgeInsets.only(bottom: 10),),
-                const Divider(indent: 50 ,endIndent: 50 ),
+                Container(
+                  child: SelectableText(
+                    article.title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  margin: const EdgeInsets.only(bottom: 10),
+                ),
+                const Divider(indent: 50, endIndent: 50),
                 Expanded(
                     child: SingleChildScrollView(
-                  child: SelectableText(article.detail,textAlign: TextAlign.justify),
+                  child: SelectableText(article.detail,
+                      textAlign: TextAlign.justify, style: const TextStyle(height: 2)),
                 ))
               ],
             ),
