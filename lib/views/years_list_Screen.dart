@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qaed/database/article_model.dart';
 import 'package:qaed/global/global_var.dart';
 import 'package:qaed/views/article_content.dart';
-
 import '../global/rout_with_transition.dart';
-import '../global/custom_theme.dart';
 import '../global/rtl_material_app_with_theme.dart';
 
 class YearsListScreen extends StatelessWidget {
@@ -17,7 +15,6 @@ class YearsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return rtlMaterialAppWithTheme(
-      theme: customLightTheme(),
       widget: SafeArea(
         child: Scaffold(
           body: CustomScrollView(slivers: [

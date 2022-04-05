@@ -10,7 +10,6 @@ class ArticleContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return rtlMaterialAppWithTheme(
-        theme: customLightTheme(),
         widget: Scaffold(
           appBar: AppBar(
             leading: IconButton(
