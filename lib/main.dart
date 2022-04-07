@@ -19,6 +19,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme( widget:  const HomePage());
+    return rtlMaterialAppWithTheme( child:  const HomePage());
   }
 }

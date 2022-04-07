@@ -6,7 +6,7 @@ class AboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme(widget: Scaffold(
+    return rtlMaterialAppWithTheme(child: Scaffold(
       appBar: AppBar(title: Text("aboutUs"))),
     );
   }

@@ -15,7 +15,7 @@ class YearsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return rtlMaterialAppWithTheme(
-      widget: SafeArea(
+      child: SafeArea(
         child: Scaffold(
           body: CustomScrollView(slivers: [
             SliverAppBar(

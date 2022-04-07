@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:qaed/global/custom_theme.dart';
 
-Widget rtlMaterialAppWithTheme({required Widget widget}) => MaterialApp(
+Widget rtlMaterialAppWithTheme({required Widget child}) => MaterialApp(
       title: 'qaed',
       // ignore: prefer_const_literals_to_create_immutables
       localizationsDelegates: [
@@ -17,5 +17,5 @@ Widget rtlMaterialAppWithTheme({required Widget widget}) => MaterialApp(
 
       theme: customLightTheme(),
       darkTheme: ThemeData(brightness: Brightness.dark, fontFamily: "vazir"),
-      home: widget,
+      home: child,
     );

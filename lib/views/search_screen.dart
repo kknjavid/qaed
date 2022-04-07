@@ -6,8 +6,8 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme(child: Scaffold(
-      appBar: AppBar(title: const Text("search"),),
-    ),);
+    return rtlMaterialAppWithTheme(
+      child: const Text("search"),
+    );
   }
 }
