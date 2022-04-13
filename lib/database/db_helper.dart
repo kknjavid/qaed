@@ -9,18 +9,13 @@ class DbHelper {
   static DbHelper instance = DbHelper._();
   DbHelper._();
   Database? _database;
-  static const _dbName = "bayanat.db";
-  static const _table = "bayanat";
-  static const _id = "id";
-  static const _title = "title";
-  static const _detail = "detail";
-  static const _year = "year";
-  static const _favorite = "favorite";
+  static const _dbName = "bayanat1.db";
+  static const _table = "bayanat1";
 
   Future get _db async => _database ?? await _initDb();
 
   _initDb() async {
-    final dbPath = await getDatabasesPath();
+    final dbPath = await getDatabasesPath;
     final path = join(dbPath, _dbName);
     bool dbExist = await databaseExists(path);
     if (dbExist) {
@@ -40,9 +35,10 @@ class DbHelper {
     }
   }
 
-  Future<List<Article>> getAllArticle() async {
+  Future<List<Article>> getAllArticleByYear(int year) async {
     Database _dbClient = await _db;
-    var allSokhan = await _dbClient.query(_table);
+    var allSokhan =
+        await _dbClient.query(_table, where: "date LIKE ?", whereArgs: [year]);
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
@@ -50,12 +46,11 @@ class DbHelper {
     return allSokhanList;
   }
 
-  Future<List<Article>> getCountOfArticlesInPerYear() async {
-    Database _dbClient = await _db;
-    var allSokhan = await _dbClient.query(_table, columns: [_year]);
-    List<Article> allSokhanList = allSokhan.isNotEmpty
-        ? allSokhan.map((e) => Article.fromMap(e)).toList()
-        : [];
-    return allSokhanList;
-  }
+  // Future<int> getCountOfArticlesInPerYear(int year) async {
+  //   Database _dbClient = await _db;
+  //   var count = await _dbClient
+  //       .rawQuery("SELECT COUNT(*) FROM bayanat WHERE date LIKE $year");
+  //   _dbClient.close();
+  //   return count.length;
+  // }
 }

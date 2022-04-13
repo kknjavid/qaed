@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:qaed/database/db_helper.dart';
+
+void main() => runApp(BookmarkScreen());
 
 class BookmarkScreen extends StatelessWidget {
-  const BookmarkScreen({Key? key}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) => FutureBuilder(
-        future: DbHelper.instance.getAllArticle(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) =>
-            CustomScrollView(
-          slivers: [
-            const SliverAppBar(
-              title: Text("نشان شده ها"),
-              centerTitle: true,
-              stretch: true,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image(image: AssetImage("assets/bookmarkBg.jpg")),
-              ),
-            ),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (context, index) => Container(),
-            ))
-          ],
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Material App Bar'),
         ),
-      );
+        body: Center(
+          child: Container(
+            child: Text('Hello World'),
+          ),
+        ),
+      ),
+    );
+  }
 }

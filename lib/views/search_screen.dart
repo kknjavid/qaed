@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:qaed/global/rtl_material_app_with_theme.dart';
+
+void main() => runApp(SearchScreen());
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme(
-      child: const Text("search"),
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Material App Bar'),
+        ),
+        body: Center(
+          child: Container(
+            child: Text('Hello World'),
+          ),
+        ),
+      ),
     );
   }
 }
