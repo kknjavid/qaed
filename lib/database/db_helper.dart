@@ -46,11 +46,4 @@ class DbHelper {
     return allSokhanList;
   }
 
-  // Future<int> getCountOfArticlesInPerYear(int year) async {
-  //   Database _dbClient = await _db;
-  //   var count = await _dbClient
-  //       .rawQuery("SELECT COUNT(*) FROM bayanat WHERE date LIKE $year");
-  //   _dbClient.close();
-  //   return count.length;
-  // }
 }
