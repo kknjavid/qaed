@@ -14,6 +14,7 @@ ThemeData customLightTheme() => ThemeData(
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: mainColor,
+
       ),
       bottomAppBarTheme: const BottomAppBarTheme(
         color: mainColor,
@@ -26,4 +27,7 @@ ThemeData customLightTheme() => ThemeData(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: accentMainColor,
       ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: mainColor,
+      )
     );

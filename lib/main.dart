@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qaed/provider/provider_state.dart';
 import 'package:qaed/views/hompage.dart';
-
-import 'global/custom_theme.dart';
 import 'global/rtl_material_app_with_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const WidgetState(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -20,6 +19,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme( child:  const HomePage());
+    return rtlMaterialAppWithTheme( home:  const HomePage());
   }
 }

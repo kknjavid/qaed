@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qaed/database/article_model.dart';
-
-import '../global/custom_theme.dart';
+import 'package:qaed/provider/provider_state.dart';
+import 'package:qaed/provider/state_model.dart';
 import '../global/rtl_material_app_with_theme.dart';
 
 class ArticleContent extends StatelessWidget {
@@ -9,17 +9,19 @@ class ArticleContent extends StatelessWidget {
   final Article article;
   @override
   Widget build(BuildContext context) {
+    final provider = InheritedProvider.of(context)!.state;
     return rtlMaterialAppWithTheme(
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(article.date),
+      home: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          body: SafeArea(
-              child: Container(
+          title: Text(article.date),
+          actions: [TextButton(onPressed: () {}, child: Text("اندازه متن"))],
+        ),
+        body: SafeArea(
+          child: Container(
             margin: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,13 +37,17 @@ class ArticleContent extends StatelessWidget {
                 ),
                 const Divider(indent: 50, endIndent: 50),
                 Expanded(
-                    child: SingleChildScrollView(
-                  child: SelectableText(article.detail,
-                      textAlign: TextAlign.justify, style: const TextStyle(height: 2)),
-                ))
+                  child: SingleChildScrollView(
+                    child: SelectableText(article.detail,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(height: 2, fontSize: provider.fontSizeArticleContent),),
+                  ),
+                )
               ],
             ),
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -9,8 +9,8 @@ class DbHelper {
   static DbHelper instance = DbHelper._();
   DbHelper._();
   Database? _database;
-  static const _dbName = "bayanat1.db";
-  static const _table = "bayanat1";
+  static const _dbName = "bayanat.db";
+  static const _table = "bayanat";
 
   Future get _db async => _database ?? await _initDb();
 
@@ -38,7 +38,18 @@ class DbHelper {
   Future<List<Article>> getAllArticleByYear(int year) async {
     Database _dbClient = await _db;
     var allSokhan =
-        await _dbClient.query(_table, where: "date LIKE ?", whereArgs: [year]);
+        await _dbClient.query(_table, where: "date LIKE ?", whereArgs: ["%${year}%"]);
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
+        : [];
+    _dbClient.close();
+    return allSokhanList;
+  }
+
+  Future<List<Article>> getAllFavArticles() async {
+    Database _dbClient = await _db;
+    var allSokhan =
+        await _dbClient.query(_table, where: "fav=?", whereArgs: [1]);
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
