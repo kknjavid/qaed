@@ -63,8 +63,7 @@ class YearsListScreen extends StatelessWidget {
                           customRoutForPush(
                             context: context,
                             widget: ArticleContent(article: articles[index]),
-                            horzentalOffset: -1,
-                            verticalOffset: 0,
+                            
                           ),
                         ),
                       ),
