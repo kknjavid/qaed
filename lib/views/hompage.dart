@@ -14,12 +14,8 @@ class HomePage extends StatelessWidget {
       ),
       body: provider.state.bodyScreen,
       bottomNavigationBar: const CustomBottomAppBar(),
-      floatingActionButton: FloatingActionButton.small(
-        onPressed: () {},
-        child: const Icon(Icons.search),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
+      
+     
     );
   }
 }

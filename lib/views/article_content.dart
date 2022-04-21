@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qaed/database/article_model.dart';
 
-import '../global/custom_theme.dart';
 import '../global/rtl_material_app_with_theme.dart';
 
 class ArticleContent extends StatelessWidget {
