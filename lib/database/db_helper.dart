@@ -37,13 +37,14 @@ class DbHelper {
 
   Future<List<Article>> getAllArticleByYear(int year) async {
     Database _dbClient = await _db;
-    var allSokhan =
-        await _dbClient.query(_table, where: "date LIKE ?", whereArgs: [year]);
+    var allSokhan = await _dbClient.query(_table,
+        columns: ["id", "title", "date"],
+        where: "date LIKE ?",
+        whereArgs: ['%$year%']);
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
     _dbClient.close();
     return allSokhanList;
   }
-
 }

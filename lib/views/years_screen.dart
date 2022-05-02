@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:qaed/global/global_var.dart';
 import 'package:qaed/global/rout_with_transition.dart';
 import 'package:qaed/views/years_list_Screen.dart';
@@ -38,10 +39,8 @@ class YearsScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).push(customRoutForPush(
-                  context: context,
-                  widget: YearsListScreen(
-                      imgUrl: "assets/pics/${lastYear - index}.jpg", curYear:(lastYear-index) ),),);
+              Get.to(() => YearsListScreen(titleIndex: index),
+                  transition: Transition.rightToLeft);
             },
           );
         },
@@ -65,7 +64,6 @@ Widget articleLabel({required IconData icon, required String text}) {
             color: Colors.white,
             shadows: [Shadow(color: Colors.black, blurRadius: 1)]),
       ),
-      
     ],
   );
 }

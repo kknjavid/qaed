@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:qaed/database/article_model.dart';
 
 import '../global/rtl_material_app_with_theme.dart';
@@ -12,7 +13,7 @@ class ArticleContent extends StatelessWidget {
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
             ),
             title: Text(article.date),
           ),

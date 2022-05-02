@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:qaed/database/article_model.dart';
+import 'package:get/route_manager.dart';
 import 'package:qaed/database/db_helper.dart';
 import 'package:qaed/global/global_var.dart';
 import 'package:qaed/views/article_content.dart';
-import '../global/rout_with_transition.dart';
-import '../global/rtl_material_app_with_theme.dart';
 
 class YearsListScreen extends StatelessWidget {
-  const YearsListScreen({Key? key, required this.imgUrl, required this.curYear})
-      : super(key: key);
-  final String imgUrl;
-  final int curYear;
+  const YearsListScreen({Key? key, required this.titleIndex}) : super(key: key);
+
+  final int titleIndex;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DbHelper.instance.getAllArticleByYear(curYear),
+      future: DbHelper.instance.getAllArticleByYear((1401 - titleIndex)),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (!snapshot.hasData) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
           if (snapshot.data.isEmpty) {
-            return Text("اطلاعاتی یافت نشد");
+            return const Text("اطلاعاتی یافت نشد");
           } else {
             return SafeArea(
               child: Scaffold(
@@ -30,19 +27,19 @@ class YearsListScreen extends StatelessWidget {
                   SliverAppBar(
                     stretch: true,
                     leading: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: Icon(Icons.arrow_back)),
+                        onPressed: () => Get.back(),
+                        icon: const Icon(Icons.arrow_back)),
                     expandedHeight: 300,
                     floating: true,
                     pinned: true,
                     primary: false,
                     flexibleSpace: FlexibleSpaceBar(
-                      background:
-                          Image(image: AssetImage(imgUrl), fit: BoxFit.cover),
+                      background: Image(
+                          image: AssetImage(
+                              "assets/pics/${1401 - titleIndex}.jpg"),
+                          fit: BoxFit.cover),
                       title: Text(
-                        curYear != 33
-                            ? "سال ${yearsNameList[curYear]}"
-                            : yearsNameList[curYear],
+                        yearsNameList[titleIndex],
                         style: const TextStyle(fontSize: 12, shadows: [
                           Shadow(color: Colors.black, blurRadius: 4)
                         ]),
@@ -51,37 +48,25 @@ class YearsListScreen extends StatelessWidget {
                   ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) => Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                // color: Color.fromARGB(255, 219, 219, 217),
-                                borderRadius: BorderRadius.circular(10)),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 4, vertical: 1),
-                            child: TextButton(
-                              child: ListTile(
-                                leading: const Icon(Icons.library_books),
-                                title: Text(
-                                  snapshot.data[index].title,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                subtitle: Text(
-                                  snapshot.data[index].date,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              onPressed: () => Navigator.of(context).push(
-                                customRoutForPush(
-                                  context: context,
-                                  widget: ArticleContent(
-                                      article: snapshot.data[index]),
-                                ),
-                              ),
-                            ),
+                      (context, index) => Container(
+                        margin: const EdgeInsets.symmetric(vertical: 1),
+                        child: ListTile(
+                          onTap: () {
+                            Get.to(
+                                () => ArticleContent(
+                                    article: snapshot.data[index]),
+                                transition: Transition.leftToRight,curve: Curves.ease);
+                          },
+                          leading: const Icon(Icons.library_books),
+                          title: Text(
+                            snapshot.data[index].title,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          const Divider()
-                        ],
+                          subtitle: Text(
+                            snapshot.data[index].date,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
                       childCount: snapshot.data.length,
                     ),
