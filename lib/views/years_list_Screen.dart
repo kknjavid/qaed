@@ -7,16 +7,12 @@ import '../global/rout_with_transition.dart';
 import '../global/rtl_material_app_with_theme.dart';
 
 class YearsListScreen extends StatelessWidget {
-  const YearsListScreen(
-      {Key? key,
-      required this.imgUrl,
-      required this.curYear})
+  const YearsListScreen({Key? key, required this.imgUrl, required this.curYear})
       : super(key: key);
   final String imgUrl;
   final int curYear;
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder(
       future: DbHelper.instance.getAllArticleByYear(curYear),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -28,78 +24,73 @@ class YearsListScreen extends StatelessWidget {
           if (snapshot.data.isEmpty) {
             return Text("اطلاعاتی یافت نشد");
           } else {
-
-        return rtlMaterialAppWithTheme(
-          child: SafeArea(
-            child: Scaffold(
-              body: CustomScrollView(slivers: [
-                SliverAppBar(
-                  stretch: true,
-                  leading: IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: Icon(Icons.arrow_back)),
-                  expandedHeight: 300,
-                  floating: true,
-                  pinned: true,
-                  primary: false,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background:
-                        Image(image: AssetImage(imgUrl), fit: BoxFit.cover),
-                    title: Text(
-                      curYear != 33
-                          ? "سال ${yearsNameList[curYear]}"
-                          : yearsNameList[curYear],
-                      style: const TextStyle(fontSize: 12, shadows: [
-                        Shadow(color: Colors.black, blurRadius: 4)
-                      ]),
+            return SafeArea(
+              child: Scaffold(
+                body: CustomScrollView(slivers: [
+                  SliverAppBar(
+                    stretch: true,
+                    leading: IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: Icon(Icons.arrow_back)),
+                    expandedHeight: 300,
+                    floating: true,
+                    pinned: true,
+                    primary: false,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background:
+                          Image(image: AssetImage(imgUrl), fit: BoxFit.cover),
+                      title: Text(
+                        curYear != 33
+                            ? "سال ${yearsNameList[curYear]}"
+                            : yearsNameList[curYear],
+                        style: const TextStyle(fontSize: 12, shadows: [
+                          Shadow(color: Colors.black, blurRadius: 4)
+                        ]),
+                      ),
                     ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              // color: Color.fromARGB(255, 219, 219, 217),
-                              borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 4, vertical: 1),
-                          child: TextButton(
-                            child: ListTile(
-                              leading: const Icon(Icons.library_books),
-                              title: Text(
-                                snapshot.data[index].title,
-                                overflow: TextOverflow.ellipsis,
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                // color: Color.fromARGB(255, 219, 219, 217),
+                                borderRadius: BorderRadius.circular(10)),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 1),
+                            child: TextButton(
+                              child: ListTile(
+                                leading: const Icon(Icons.library_books),
+                                title: Text(
+                                  snapshot.data[index].title,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: Text(
+                                  snapshot.data[index].date,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                              subtitle: Text(
-                                 snapshot.data[index].date,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            onPressed: () => Navigator.of(context).push(
-                              customRoutForPush(
-                                context: context,
-                                widget:
-                                    ArticleContent(article:  snapshot.data[index]),
+                              onPressed: () => Navigator.of(context).push(
+                                customRoutForPush(
+                                  context: context,
+                                  widget: ArticleContent(
+                                      article: snapshot.data[index]),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Divider()
-                      ],
+                          const Divider()
+                        ],
+                      ),
+                      childCount: snapshot.data.length,
                     ),
-                    childCount: snapshot.data.length,
                   ),
-                ),
-              ]),
-            ),
-          ),
-        );
-      
+                ]),
+              ),
+            );
           }
         }
-      
       },
     );
   }

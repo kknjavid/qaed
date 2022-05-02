@@ -8,8 +8,7 @@ class ArticleContent extends StatelessWidget {
   final Article article;
   @override
   Widget build(BuildContext context) {
-    return rtlMaterialAppWithTheme(
-        child: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
@@ -41,6 +40,6 @@ class ArticleContent extends StatelessWidget {
               ],
             ),
           )),
-        ));
+        );
   }
 }

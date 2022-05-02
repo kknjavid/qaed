@@ -9,8 +9,8 @@ class DbHelper {
   static DbHelper instance = DbHelper._();
   DbHelper._();
   Database? _database;
-  static const _dbName = "bayanat1.db";
-  static const _table = "bayanat1";
+  static const _dbName = "bayanat.db";
+  static const _table = "bayanat";
 
   Future get _db async => _database ?? await _initDb();
 

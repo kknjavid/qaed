@@ -65,6 +65,7 @@ Widget articleLabel({required IconData icon, required String text}) {
             color: Colors.white,
             shadows: [Shadow(color: Colors.black, blurRadius: 1)]),
       ),
+      
     ],
   );
 }
