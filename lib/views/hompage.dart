@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qaed/provider/bodyScreen.dart';
+import 'package:qaed/controller/bodyscreen_controller.dart';
 import 'package:qaed/views/bottomappbar.dart';
 import 'package:qaed/views/years_screen.dart';
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:qaed/provider/bodyScreen.dart';
+import 'package:qaed/controller/bodyscreen_controller.dart';
+import 'package:qaed/controller/fav_articles_controller.dart';
 
 class CustomBottomAppBar extends GetView {
   const CustomBottomAppBar({Key? key}) : super(key: key);
@@ -20,7 +21,12 @@ class CustomBottomAppBar extends GetView {
         TabItem(icon: Icons.logout, title: 'خروج'),
       ],
       initialActiveIndex: 0, //optional, default as 0
-      onTap: (int i) =>bodyScreen.change(i),
+      onTap: (int i) {
+        if (i == 1) {
+          Get.put(FavArticlesController()).getArticles();
+        }
+        bodyScreen.change(i);
+      },
     );
   }
 }

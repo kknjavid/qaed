@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:qaed/controller/articles_by_year_controller.dart';
 import 'package:qaed/global/global_var.dart';
 import 'package:qaed/global/rout_with_transition.dart';
 import 'package:qaed/views/years_list_Screen.dart';
@@ -39,6 +41,7 @@ class YearsScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
+             Get.put(ArticlesByYearController()).getArticles(1401-index);
               Get.to(() => YearsListScreen(titleIndex: index),
                   transition: Transition.rightToLeft);
             },

@@ -4,13 +4,13 @@ class Article {
   String detail;
   int year;
   String date;
-  int favorite;
+  int fav;
   Article({
     required this.id,
     required this.title,
     required this.detail,
     required this.date,
-    required this.favorite,
+    required this.fav,
     required this.year
   });
 
@@ -20,7 +20,7 @@ class Article {
       'title': title,
       'detail': detail,
       'date': date,
-      'favorite': favorite,
+      'favorite': fav,
       'year': year,
     };
   }
@@ -32,7 +32,7 @@ class Article {
       detail: map['detail'] ?? '',
       year: map['year']?.toInt() ?? 0,
       date: map['date'] ?? '',
-      favorite: map['favorite']?.toInt() ?? 0,
+      fav: map['favorite']?.toInt() ?? 0,
     );
   }
 }

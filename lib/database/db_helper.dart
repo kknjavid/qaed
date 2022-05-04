@@ -6,8 +6,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DbHelper {
-  static DbHelper instance = DbHelper._();
-  DbHelper._();
+  // static DbHelper instance = DbHelper._();
+  // DbHelper._();
   Database? _database;
   static const _dbName = "bayanat.db";
   static const _table = "bayanat";
@@ -46,5 +46,39 @@ class DbHelper {
         : [];
     _dbClient.close();
     return allSokhanList;
+  }
+
+  Future<List<Article>> getArticle(int id) async {
+    Database _dbClient = await _db;
+    var allSokhan =
+        await _dbClient.query(_table, where: "id=?", whereArgs: [id]);
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
+        : [];
+    _dbClient.close();
+    return allSokhanList;
+  }
+
+  Future<List<Article>> getFavArticles() async {
+    Database _dbClient = await _db;
+    var allSokhan = await _dbClient.query(_table,
+        columns: ["id", "title", "date", "fav"],
+        where: "fav=?",
+        whereArgs: [1]);
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
+        : [];
+    _dbClient.close();
+    return allSokhanList;
+  }
+
+  Future<int> changeFav(Article article) async {
+    final fav = article.fav == 1 ? 0 : 1;
+    Database _dbClient = await _db;
+    var res = await _dbClient.update(_table, {"fav": fav},
+        where: "id=?", whereArgs: [article.id]);
+
+    _dbClient.close();
+    return res;
   }
 }

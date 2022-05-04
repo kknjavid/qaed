@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:qaed/database/db_helper.dart';
 import 'package:qaed/views/hompage.dart';
 import 'global/rtl_material_app_with_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.lazyPut<DbHelper>(() => DbHelper());
   runApp(const MyApp());
 }
 

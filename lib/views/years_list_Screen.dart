@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/route_manager.dart';
+import 'package:qaed/controller/article_controller.dart';
+import 'package:qaed/controller/articles_by_year_controller.dart';
 import 'package:qaed/database/db_helper.dart';
 import 'package:qaed/global/global_var.dart';
 import 'package:qaed/views/article_content.dart';
@@ -10,16 +14,20 @@ class YearsListScreen extends StatelessWidget {
   final int titleIndex;
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DbHelper.instance.getAllArticleByYear((1401 - titleIndex)),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(),
+    return Obx(
+      () {
+        ArticlesByYearController controller =
+            Get.find<ArticlesByYearController>();
+        if (controller.loading.isTrue) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else {
-          if (snapshot.data.isEmpty) {
-            return const Text("اطلاعاتی یافت نشد");
+          if (controller.articles.isEmpty) {
+            return const Scaffold(
+                body: Center(child: Text("اطلاعاتی یافت نشد")));
           } else {
             return SafeArea(
               child: Scaffold(
@@ -52,23 +60,24 @@ class YearsListScreen extends StatelessWidget {
                         margin: const EdgeInsets.symmetric(vertical: 1),
                         child: ListTile(
                           onTap: () {
-                            Get.to(
-                                () => ArticleContent(
-                                    article: snapshot.data[index]),
-                                transition: Transition.leftToRight,curve: Curves.ease);
+                            Get.put(ArticleController())
+                                .getArticle(controller.articles[index].id);
+                            Get.to(() => const ArticleContent(),
+                                transition: Transition.leftToRight,
+                                curve: Curves.ease);
                           },
                           leading: const Icon(Icons.library_books),
                           title: Text(
-                            snapshot.data[index].title,
+                            controller.articles[index].title,
                             overflow: TextOverflow.ellipsis,
                           ),
                           subtitle: Text(
-                            snapshot.data[index].date,
+                            controller.articles[index].date,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),
-                      childCount: snapshot.data.length,
+                      childCount: controller.articles.length,
                     ),
                   ),
                 ]),
