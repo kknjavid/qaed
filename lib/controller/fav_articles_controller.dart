@@ -13,9 +13,17 @@ class FavArticlesController extends GetxController {
     loading(true);
     await _db.getFavArticles().then((value) {
       articles.clear();
-      articles(value);
+      articles.assignAll(value);
       loading(false);
     });
     update();
+  }
+
+  Future<void> favRemove(int id) async {
+    await _db.favRemove(id).then((value) {
+      getArticles();
+      // refresh();
+      update();
+    });
   }
 }

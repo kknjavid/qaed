@@ -12,7 +12,7 @@ class ArticlesByYearController extends GetxController {
     loading(true);
     await _db.getAllArticleByYear(year).then((value) {
       articles.clear();
-      articles(value);
+      articles.assignAll(value);
       loading(false);
     });
     update();

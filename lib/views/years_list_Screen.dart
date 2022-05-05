@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/route_manager.dart';
 import 'package:qaed/controller/article_controller.dart';
 import 'package:qaed/controller/articles_by_year_controller.dart';
-import 'package:qaed/database/db_helper.dart';
 import 'package:qaed/global/global_var.dart';
-import 'package:qaed/views/article_content.dart';
+import 'package:qaed/views/article_content_screen.dart';
 
 class YearsListScreen extends StatelessWidget {
   const YearsListScreen({Key? key, required this.titleIndex}) : super(key: key);

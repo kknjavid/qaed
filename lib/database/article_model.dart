@@ -20,7 +20,7 @@ class Article {
       'title': title,
       'detail': detail,
       'date': date,
-      'favorite': fav,
+      'fav': fav,
       'year': year,
     };
   }
@@ -32,7 +32,7 @@ class Article {
       detail: map['detail'] ?? '',
       year: map['year']?.toInt() ?? 0,
       date: map['date'] ?? '',
-      fav: map['favorite']?.toInt() ?? 0,
+      fav: map['fav']?.toInt() ?? 0,
     );
   }
 }

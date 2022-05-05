@@ -6,16 +6,16 @@ import 'package:qaed/global/custom_theme.dart';
 Widget rtlMaterialAppWithTheme({required Widget child}) => GetMaterialApp(
       title: 'qaed',
       // ignore: prefer_const_literals_to_create_immutables
-      // localizationsDelegates: [
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      // // ignore: prefer_const_literals_to_create_immutables
-      // supportedLocales: [
-      //   const Locale('fa', ''), // farsi
-      // ],
-      locale: const Locale("fa", "ir"),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      // ignore: prefer_const_literals_to_create_immutables
+      supportedLocales: [
+        const Locale('fa', ''), // farsi
+      ],
+      locale: const Locale("fa", ""),
       theme: customLightTheme(),
       darkTheme: ThemeData(brightness: Brightness.dark, fontFamily: "vazir"),
       home: child,

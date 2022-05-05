@@ -15,6 +15,7 @@ ThemeData customLightTheme() => ThemeData(
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: mainColor,
+        
       ),
       bottomAppBarTheme: const BottomAppBarTheme(
         color: mainColor,
@@ -24,6 +25,7 @@ ThemeData customLightTheme() => ThemeData(
       iconTheme: const IconThemeData(
         color: Color.fromARGB(207, 255, 255, 255),
       ),
+      
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: accentMainColor,
       ),

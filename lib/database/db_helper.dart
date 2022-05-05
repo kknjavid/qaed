@@ -81,4 +81,13 @@ class DbHelper {
     _dbClient.close();
     return res;
   }
+   Future<int> favRemove(int id) async {
+   
+    Database _dbClient = await _db;
+    var res = await _dbClient.update(_table, {"fav": 0},
+        where: "id=?", whereArgs: [id]);
+
+    _dbClient.close();
+    return res;
+  }
 }

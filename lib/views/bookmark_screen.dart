@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qaed/controller/article_controller.dart';
 import 'package:qaed/controller/fav_articles_controller.dart';
-import 'package:qaed/views/article_content.dart';
+import 'package:qaed/views/article_content_screen.dart';
 
 class BookmarkScreen extends StatelessWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
@@ -33,7 +33,11 @@ class BookmarkScreen extends StatelessWidget {
                     Get.to(() => const ArticleContent(),
                         transition: Transition.leftToRight, curve: Curves.ease);
                   },
-                  leading: const Icon(Icons.library_books),
+                  trailing: IconButton(
+                      icon: const Icon(Icons.bookmark_remove),
+                      onPressed: () {
+                        favController.favRemove(favController.articles[index].id);
+                      }),
                   title: Text(
                     favController.articles[index].title,
                     overflow: TextOverflow.ellipsis,
