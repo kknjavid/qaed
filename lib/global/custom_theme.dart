@@ -11,7 +11,6 @@ ThemeData customLightTheme() => ThemeData(
       ),
       listTileTheme: const ListTileThemeData(
         iconColor: mainColor,
-        tileColor: Color.fromARGB(34, 151, 151, 151),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: mainColor,

@@ -9,6 +9,9 @@ class ArticleController extends GetxController {
   RxList<Article> articles = <Article>[].obs;
   RxDouble fontSize = 16.0.obs;
 
+
+
+
   void getArticle(int id) async {
     loading(true);
     await _db.getArticle(id).then((value) {

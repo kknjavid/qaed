@@ -56,10 +56,12 @@ class YearsListScreen extends StatelessWidget {
                       (context, index) => Container(
                         margin: const EdgeInsets.symmetric(vertical: 1),
                         child: ListTile(
+        tileColor: Color.fromARGB(34, 151, 151, 151),
+
                           onTap: () {
                             Get.put(ArticleController())
                                 .getArticle(controller.articles[index].id);
-                            Get.to(() => const ArticleContent(),
+                            Get.to(() =>  ArticleContent(),
                                 transition: Transition.leftToRight,
                                 curve: Curves.ease);
                           },

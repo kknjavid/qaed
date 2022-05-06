@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:qaed/controller/bodyscreen_controller.dart';
@@ -22,10 +23,11 @@ class CustomBottomAppBar extends GetView {
       ],
       initialActiveIndex: 0, //optional, default as 0
       onTap: (int i) {
-        if (i == 1) {
-          Get.put(FavArticlesController()).getArticles();
+        if (i > 3) {
+          SystemNavigator.pop();
+        } else {
+          bodyScreen.change(i);
         }
-        bodyScreen.change(i);
       },
     );
   }

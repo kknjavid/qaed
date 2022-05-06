@@ -12,7 +12,8 @@ class HomePage extends GetView {
     BodyScreenController bodyScreen = Get.put(BodyScreenController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("نرم افزار قائد"),
+        
+        title:  const Text("نرم افزار قائد"),
       ),
       body:Obx(()=>bodyScreen.widget.value),
       bottomNavigationBar: const CustomBottomAppBar(),

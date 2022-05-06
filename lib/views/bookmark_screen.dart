@@ -10,7 +10,7 @@ class BookmarkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      FavArticlesController favController = Get.find();
+      FavArticlesController favController = Get.put(FavArticlesController());
       if (favController.loading.isTrue) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -27,16 +27,18 @@ class BookmarkScreen extends StatelessWidget {
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 1),
                 child: ListTile(
+                  tileColor: Color.fromARGB(34, 151, 151, 151),
                   onTap: () {
                     Get.put(ArticleController())
                         .getArticle(favController.articles[index].id);
-                    Get.to(() => const ArticleContent(),
+                    Get.to(() => ArticleContent(),
                         transition: Transition.leftToRight, curve: Curves.ease);
                   },
                   trailing: IconButton(
                       icon: const Icon(Icons.bookmark_remove),
                       onPressed: () {
-                        favController.favRemove(favController.articles[index].id);
+                        favController
+                            .favRemove(favController.articles[index].id);
                       }),
                   title: Text(
                     favController.articles[index].title,

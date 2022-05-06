@@ -13,9 +13,9 @@ Widget rtlMaterialAppWithTheme({required Widget child}) => GetMaterialApp(
       ],
       // ignore: prefer_const_literals_to_create_immutables
       supportedLocales: [
-        const Locale('fa', ''), // farsi
+        const Locale('fa', 'Persian'), // farsi
       ],
-      locale: const Locale("fa", ""),
+      locale: const Locale("fa", "Persian"),
       theme: customLightTheme(),
       darkTheme: ThemeData(brightness: Brightness.dark, fontFamily: "vazir"),
       home: child,

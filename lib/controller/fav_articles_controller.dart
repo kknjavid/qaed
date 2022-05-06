@@ -26,4 +26,11 @@ class FavArticlesController extends GetxController {
       update();
     });
   }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getArticles();
+  }
 }

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qaed/controller/article_controller.dart';
 import 'package:qaed/global/custom_theme.dart';
+import 'package:qaed/global/search_highlight.dart';
 
 class ArticleContent extends StatelessWidget {
-  const ArticleContent({Key? key}) : super(key: key);
+  ArticleContent({Key? key, this.searchMode, this.query}) : super(key: key);
+  bool? searchMode = false;
+  String? query = "";
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -29,8 +32,13 @@ class ArticleContent extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () => Get.back(),
               ),
-              title: Text(controller.articles.first.date),
+              title: Text.rich(searchMode == true
+                  ? TextSpan(
+                      children: highlightOccurrences(
+                          controller.articles.first.date, query!))
+                  : TextSpan(text: controller.articles.first.date)),
               actions: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
                 IconButton(
                     onPressed: () {
                       Get.dialog(AlertDialog(
@@ -65,8 +73,13 @@ class ArticleContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: SelectableText(
-                      controller.articles.first.title,
+                    child: SelectableText.rich(
+                      
+                      searchMode == true
+                          ? TextSpan(
+                              children: highlightOccurrences(
+                                  controller.articles.first.title, query!))
+                          : TextSpan(text: controller.articles.first.title),
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -77,7 +90,13 @@ class ArticleContent extends StatelessWidget {
                       child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SelectableText(controller.articles.first.detail,
+                        SelectableText.rich(
+                            searchMode == true
+                                ? TextSpan(
+                                    children: highlightOccurrences(
+                                        controller.articles.first.detail, query!))
+                                : TextSpan(
+                                    text: controller.articles.first.detail),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                                 height: 2,
@@ -92,15 +111,19 @@ class ArticleContent extends StatelessWidget {
             floatingActionButton: FloatingActionButton.small(
               onPressed: () {
                 controller.changeFav(controller.articles.first);
-                
-                Get.snackbar(controller.articles.first.fav==0?"به لیست ذخیره افزوده شد":"از لیست ذخیره حذف شد", "",
+
+                Get.snackbar(
+                    controller.articles.first.fav == 0
+                        ? "به لیست ذخیره افزوده شد"
+                        : "از لیست ذخیره حذف شد",
+                    "",
                     snackPosition: SnackPosition.BOTTOM,
                     duration: const Duration(seconds: 1),
                     backgroundColor: const Color.fromARGB(131, 0, 0, 0));
               },
               child: Icon(controller.articles.first.fav == 0
-                  ? Icons.bookmark_add
-                  : Icons.bookmark_remove),
+                  ? Icons.bookmark_outline
+                  : Icons.bookmark),
             ),
           );
         }

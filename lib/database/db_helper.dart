@@ -90,4 +90,17 @@ class DbHelper {
     _dbClient.close();
     return res;
   }
+  Future<List<Article>> search(String text) async {
+    Database _dbClient = await _db;
+    var allSokhan = await _dbClient.query(_table,
+        columns: ["id", "title","date"],
+        where: "title LIKE ? OR detail LIKE ? OR date LIKE ?",
+        whereArgs: ['%$text%','%$text%','%$text%']);
+    List<Article> allSokhanList = allSokhan.isNotEmpty
+        ? allSokhan.map((e) => Article.fromMap(e)).toList()
+        : [];
+    _dbClient.close();
+    return allSokhanList;
+  }
+
 }
