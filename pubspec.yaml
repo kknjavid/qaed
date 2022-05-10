@@ -39,6 +39,9 @@ dependencies:
   sqflite: ^2.0.2
   convex_bottom_bar: 
   get: ^4.6.1
+  group_button: ^5.0.1
+  url_launcher: ^6.1.0
+  
 
 flutter_native_splash:
   android: true

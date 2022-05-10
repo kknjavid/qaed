@@ -5,6 +5,7 @@ class Article {
   int year;
   String date;
   int fav;
+  
   Article({
     required this.id,
     required this.title,

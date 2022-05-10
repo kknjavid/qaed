@@ -6,7 +6,7 @@ import 'package:qaed/global/search_highlight.dart';
 
 class ArticleContent extends StatelessWidget {
   ArticleContent({Key? key, this.searchMode, this.query}) : super(key: key);
-  bool? searchMode = false;
+  int? searchMode;
   String? query = "";
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,8 @@ class ArticleContent extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () => Get.back(),
               ),
-              title: Text.rich(searchMode == true
-                  ? TextSpan(
-                      children: highlightOccurrences(
-                          controller.articles.first.date, query!))
-                  : TextSpan(text: controller.articles.first.date)),
+              title: Text( controller.articles.first.date),
               actions: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
                 IconButton(
                     onPressed: () {
                       Get.dialog(AlertDialog(
@@ -75,8 +70,9 @@ class ArticleContent extends StatelessWidget {
                   Container(
                     child: SelectableText.rich(
                       
-                      searchMode == true
+                      searchMode == 0
                           ? TextSpan(
+                            
                               children: highlightOccurrences(
                                   controller.articles.first.title, query!))
                           : TextSpan(text: controller.articles.first.title),
@@ -91,7 +87,7 @@ class ArticleContent extends StatelessWidget {
                     child: Column(
                       children: [
                         SelectableText.rich(
-                            searchMode == true
+                            searchMode == 1
                                 ? TextSpan(
                                     children: highlightOccurrences(
                                         controller.articles.first.detail, query!))

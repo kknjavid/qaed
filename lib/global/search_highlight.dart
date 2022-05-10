@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qaed/global/custom_theme.dart';
 
 List<TextSpan> highlightOccurrences(String source, String query) {
   // ignore: unnecessary_null_comparison

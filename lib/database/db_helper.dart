@@ -44,7 +44,6 @@ class DbHelper {
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
-    _dbClient.close();
     return allSokhanList;
   }
 
@@ -55,7 +54,6 @@ class DbHelper {
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
-    _dbClient.close();
     return allSokhanList;
   }
 
@@ -68,7 +66,6 @@ class DbHelper {
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
-    _dbClient.close();
     return allSokhanList;
   }
 
@@ -78,29 +75,39 @@ class DbHelper {
     var res = await _dbClient.update(_table, {"fav": fav},
         where: "id=?", whereArgs: [article.id]);
 
-    _dbClient.close();
     return res;
   }
-   Future<int> favRemove(int id) async {
-   
+
+  Future<int> favRemove(int id) async {
     Database _dbClient = await _db;
     var res = await _dbClient.update(_table, {"fav": 0},
         where: "id=?", whereArgs: [id]);
 
-    _dbClient.close();
     return res;
   }
-  Future<List<Article>> search(String text) async {
-    Database _dbClient = await _db;
-    var allSokhan = await _dbClient.query(_table,
-        columns: ["id", "title","date"],
-        where: "title LIKE ? OR detail LIKE ? OR date LIKE ?",
-        whereArgs: ['%$text%','%$text%','%$text%']);
-    List<Article> allSokhanList = allSokhan.isNotEmpty
-        ? allSokhan.map((e) => Article.fromMap(e)).toList()
-        : [];
-    _dbClient.close();
-    return allSokhanList;
-  }
 
+  Future<List> search(String text, int index) async {
+    String col = index == 0 ? "title" : "detail";
+    Database _dbClient = await _db;
+    var allArticles = await _dbClient.query(_table,
+        columns: ["id", "title", "date"],
+        where: "$col LIKE ?",
+        whereArgs: ['%$text%']);
+    List<Article> articlesList = allArticles.isNotEmpty
+        ? allArticles.map((e) => Article.fromMap(e)).toList()
+        : [];
+    String command =
+        "(length($col)-length(replace($col, '$text', ''))) / length('$text')";
+    var countsQuery = await _dbClient
+        .rawQuery("SELECT $command FROM $_table WHERE $col like '%$text%'");
+    List counts = countsQuery.isNotEmpty
+        ? countsQuery.map((e) => e[command]).toList()
+        : [];
+    List finalList = [];
+    if (articlesList.isNotEmpty || counts.isNotEmpty || articlesList.length==counts.length) {
+      finalList.add(articlesList);
+      finalList.add(counts);
+    }
+    return finalList;
+  }
 }

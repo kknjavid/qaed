@@ -5,7 +5,6 @@ import 'package:qaed/views/hompage.dart';
 import 'global/rtl_material_app_with_theme.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   Get.lazyPut<DbHelper>(() => DbHelper());
   runApp(const MyApp());
 }

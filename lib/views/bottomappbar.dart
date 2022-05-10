@@ -18,7 +18,7 @@ class CustomBottomAppBar extends GetView {
         TabItem(icon: Icons.home, title: 'خانه'),
         TabItem(icon: Icons.bookmarks, title: 'ذخیره'),
         TabItem(icon: Icons.search, title: 'جستجو'),
-        TabItem(icon: Icons.info, title: 'درباره ما'),
+        TabItem(icon: Icons.info, title: 'درباره'),
         TabItem(icon: Icons.logout, title: 'خروج'),
       ],
       initialActiveIndex: 0, //optional, default as 0
