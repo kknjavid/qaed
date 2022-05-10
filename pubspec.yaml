@@ -41,7 +41,7 @@ dependencies:
   get: ^4.6.1
   group_button: ^5.0.1
   url_launcher: ^6.1.0
-  
+  flutter_switch: ^0.3.2
 
 flutter_native_splash:
   android: true
