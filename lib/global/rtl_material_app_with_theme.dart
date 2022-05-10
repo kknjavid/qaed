@@ -17,6 +17,9 @@ Widget rtlMaterialAppWithTheme({required Widget child}) => GetMaterialApp(
       ],
       locale: const Locale("fa", "Persian"),
       theme: customLightTheme(),
-      darkTheme: ThemeData(brightness: Brightness.dark, fontFamily: "vazir"),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: "vazir",
+          primaryColor: const Color.fromARGB(255, 65, 65, 65)),
       home: child,
     );

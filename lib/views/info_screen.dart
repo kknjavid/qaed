@@ -13,15 +13,10 @@ class InfoScreen extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * .95,
         margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-
-          // ignore: prefer_const_constructors
-          gradient: LinearGradient(colors: const [
-            Color.fromARGB(144, 58, 58, 58),
-            Color.fromARGB(117, 184, 184, 184)
-          ]),
+            color:  const Color.fromARGB(68, 156, 156, 156),
         ),
         child: Column(
           // ignore: prefer_const_literals_to_create_immutables
@@ -39,7 +34,7 @@ class InfoScreen extends StatelessWidget {
             ),
             // SizedBox(height: 10,),
             const Text(
-              "\nبرنامه نویس و توسعه دهنده\nوب و موبایل",
+              "\nبرنامه نویس و توسعه دهنده\nوب و موبایل\n",
               textAlign: TextAlign.center,
             ),
 

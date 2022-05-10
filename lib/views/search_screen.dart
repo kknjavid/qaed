@@ -40,9 +40,11 @@ class SearchScreen extends GetView<SearchController> {
                         },
                         isRadio: true,
                         options: GroupButtonOptions(
-                          
+                            unselectedTextStyle:
+                                Theme.of(context).textTheme.bodySmall,
                             selectedColor: mainColor,
-                            unselectedBorderColor: mainColor,
+                            unselectedBorderColor:
+                                Theme.of(context).dividerColor,
                             borderRadius: BorderRadius.circular(20)),
                       ),
                       Text("نتایج جستجو: ${searchController.count}"),
@@ -58,39 +60,44 @@ class SearchScreen extends GetView<SearchController> {
                 )
               else
                 Expanded(
-                  child: 
-                  searchController.results.isEmpty? const Center(child: Text("موردی یافت نشد"),):
-                  ListView.builder(
-                    itemCount: searchController.results[1].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 1),
-                        child: ListTile(
-                          tileColor: const Color.fromARGB(34, 151, 151, 151),
-                          onTap: () {
-                            Get.put(ArticleController()).getArticle(
-                                searchController.results[0][index].id);
-                            Get.to(
-                              ArticleContent(
-                                  searchMode: searchController.searchMode.value,
-                                  query: searchController.tController.text),
+                  child: searchController.results.isEmpty
+                      ? const Center(
+                          child: Text("موردی یافت نشد"),
+                        )
+                      : ListView.builder(
+                          itemCount: searchController.results[1].length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              margin: const EdgeInsets.symmetric(vertical: 1),
+                              child: ListTile(
+                                tileColor:
+                                    const Color.fromARGB(34, 151, 151, 151),
+                                onTap: () {
+                                  Get.put(ArticleController()).getArticle(
+                                      searchController.results[0][index].id);
+                                  Get.to(
+                                    ArticleContent(
+                                        searchMode:
+                                            searchController.searchMode.value,
+                                        query:
+                                            searchController.tController.text),
+                                  );
+                                },
+                                leading: const Icon(Icons.search),
+                                title: Text(
+                                  searchController.results[0][index].title,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: Text(
+                                  searchController.results[0][index].date,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                trailing: Text(
+                                    "${searchController.results[1][index].toString()} مورد"),
+                              ),
                             );
                           },
-                          leading: const Icon(Icons.search),
-                          title: Text(
-                            searchController.results[0][index].title,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          subtitle: Text(
-                            searchController.results[0][index].date,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          trailing: Text(
-                              "${searchController.results[1][index].toString()} مورد"),
                         ),
-                      );
-                    },
-                  ),
                 )
             ],
           ),
