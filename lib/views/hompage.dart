@@ -13,30 +13,31 @@ class HomePage extends GetView {
   @override
   Widget build(BuildContext context) {
     BodyScreenController bodyScreen = Get.put(BodyScreenController());
-    ThemeModeController modeController = Get.put(ThemeModeController());
+    ThemeModeController modeController = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: const Text("نرم افزار قائد"),
         actions: [
-          Obx(() => FlutterSwitch(
-                value: modeController.mode.value,
-                onToggle: (v) {
-                  modeController.change(v);
-                },
-                height: 30,
-                width: 60,
-                activeIcon: const Icon(
-                  Icons.nightlight,
-                  color: Color.fromARGB(255, 16, 0, 61),
-                ),
-                activeColor: Color.fromARGB(103, 16, 0, 61),
-                inactiveIcon: const Icon(
-                  Icons.sunny,
-                  color: Colors.amber,
-                ),
-
+          Obx(
+            () => FlutterSwitch(
+              value: modeController.mode.value,
+              onToggle: (v) {
+                modeController.change(v);
+              },
+              height: 30,
+              width: 60,
+              inactiveIcon: const Icon(
+                Icons.nightlight,
+                color: Color.fromARGB(255, 16, 0, 61),
               ),
+              inactiveColor: const Color.fromARGB(103, 16, 0, 61),
+              activeColor: const Color.fromARGB(118, 255, 255, 255),
+              activeIcon: const Icon(
+                Icons.sunny,
+                color: Colors.amber,
               ),
+            ),
+          ),
           const SizedBox(
             width: 10,
           )

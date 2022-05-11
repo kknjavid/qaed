@@ -6,6 +6,7 @@ import 'package:qaed/global/custom_theme.dart';
 
 Widget rtlMaterialAppWithTheme({required Widget child}) {
   return Obx(() {
+    ThemeModeController modeController = Get.find();
     return GetMaterialApp(
       title: 'qaed',
       // ignore: prefer_const_literals_to_create_immutables
@@ -18,8 +19,9 @@ Widget rtlMaterialAppWithTheme({required Widget child}) {
       supportedLocales: [
         const Locale('fa', 'Persian'), // farsi
       ],
+      // debugShowCheckedModeBanner: false,
       locale: const Locale("fa", "Persian"),
-      themeMode: Get.put(ThemeModeController()).theme.value,
+      themeMode: modeController.theme.value,
       theme: customLightTheme(),
       darkTheme: ThemeData(
           brightness: Brightness.dark,
