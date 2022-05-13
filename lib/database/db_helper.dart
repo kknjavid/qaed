@@ -103,10 +103,16 @@ class DbHelper {
     List counts = countsQuery.isNotEmpty
         ? countsQuery.map((e) => e[command]).toList()
         : [];
+    int s = counts.isNotEmpty? counts.reduce((value, element) => value + element):0;
+    int sum = s;
+    print(sum);
     List finalList = [];
-    if (articlesList.isNotEmpty || counts.isNotEmpty || articlesList.length==counts.length) {
+    if (articlesList.isNotEmpty &&
+        counts.isNotEmpty &&
+        articlesList.length == counts.length) {
       finalList.add(articlesList);
       finalList.add(counts);
+      finalList.add(sum);
     }
     return finalList;
   }

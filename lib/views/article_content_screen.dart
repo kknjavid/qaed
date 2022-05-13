@@ -110,8 +110,8 @@ class ArticleContent extends StatelessWidget {
 
                 Get.snackbar(
                     controller.articles.first.fav == 0
-                        ? "به لیست ذخیره افزوده شد"
-                        : "از لیست ذخیره حذف شد",
+                        ? "به فهرست ذخیره افزوده شد"
+                        : "از فهرست ذخیره حذف شد",
                     "",
                     snackPosition: SnackPosition.BOTTOM,
                     duration: const Duration(seconds: 1),

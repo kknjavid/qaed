@@ -25,29 +25,37 @@ class SearchScreen extends GetView<SearchController> {
                 decoration: InputDecoration(
                   hintText: "متن را وارد نمایید",
                   labelText: "جستجو",
-                  counter: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  counter: Column(
                     children: [
-                      GroupButton(
-                        buttons: const ["در عنوان", "در متن"],
-                        onSelected: (value, index, isSelected) {
-                          searchController.tController.text == ""
-                              ? Get.defaultDialog(
-                                  title: "یاد آوری",
-                                  content:
-                                      const Text("ورودی نمی تواند خالی باشد"))
-                              : searchController.search(index);
-                        },
-                        isRadio: true,
-                        options: GroupButtonOptions(
-                            unselectedTextStyle:
-                                Theme.of(context).textTheme.bodySmall,
-                            selectedColor: mainColor,
-                            unselectedBorderColor:
-                                Theme.of(context).dividerColor,
-                            borderRadius: BorderRadius.circular(20)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GroupButton(
+                            buttons: const ["در عنوان", "در متن"],
+                            onSelected: (value, index, isSelected) {
+                              searchController.tController.text == ""
+                                  ? Get.defaultDialog(
+                                      title: "یاد آوری",
+                                      content:
+                                          const Text("ورودی نمی تواند خالی باشد"))
+                                  : searchController.search(index);
+                            },
+                            isRadio: true,
+                            options: GroupButtonOptions(
+                                unselectedTextStyle:
+                                    Theme.of(context).textTheme.bodySmall,
+                                selectedColor: mainColor,
+                                unselectedBorderColor:
+                                    Theme.of(context).dividerColor,
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                        ],
                       ),
-                      Text("نتایج جستجو: ${searchController.count}"),
+                         Text("نتایج: (${searchController.queryCounts}) مورد در (${searchController.count}) سخنرانی"),
+                         
+                         const SizedBox(height: 10,
+                         width: 200,
+                         child: Divider(color: mainColor),)
                     ],
                   ),
                   border: const OutlineInputBorder(),
@@ -79,8 +87,7 @@ class SearchScreen extends GetView<SearchController> {
                                     ArticleContent(
                                         searchMode:
                                             searchController.searchMode.value,
-                                        query:
-                                            searchController.tController.text),
+                                        query: searchController.query.value),
                                   );
                                 },
                                 leading: const Icon(Icons.search),
