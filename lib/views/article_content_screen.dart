@@ -4,6 +4,7 @@ import 'package:qaed/controller/article_controller.dart';
 import 'package:qaed/global/custom_theme.dart';
 import 'package:qaed/global/search_highlight.dart';
 
+// ignore: must_be_immutable
 class ArticleContent extends StatelessWidget {
   ArticleContent({Key? key, this.searchMode, this.query}) : super(key: key);
   int? searchMode;

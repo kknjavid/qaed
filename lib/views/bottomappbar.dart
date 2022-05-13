@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:qaed/controller/bodyscreen_controller.dart';
-import 'package:qaed/controller/fav_articles_controller.dart';
-import 'package:qaed/global/custom_theme.dart';
 
 class CustomBottomAppBar extends GetView {
   const CustomBottomAppBar({Key? key}) : super(key: key);

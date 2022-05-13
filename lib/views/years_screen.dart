@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:qaed/controller/articles_by_year_controller.dart';
 import 'package:qaed/global/global_var.dart';
-import 'package:qaed/views/years_list_Screen.dart';
+import 'package:qaed/views/years_list_screen.dart';
 
 class YearsScreen extends StatelessWidget {
   const YearsScreen({Key? key}) : super(key: key);

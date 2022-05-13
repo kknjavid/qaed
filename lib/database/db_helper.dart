@@ -19,18 +19,18 @@ class DbHelper {
     final path = join(dbPath, _dbName);
     bool dbExist = await databaseExists(path);
     if (dbExist) {
-      print("db already exist");
+      // print("db already exist");
       return await openDatabase(path);
     } else {
       try {
-        print("creating a copy from assets");
+        // print("creating a copy from assets");
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
       ByteData data = await rootBundle.load(join("assets", _dbName));
       List<int> bytes =
           data.buffer.asInt8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
-      print("db copied...");
+      // print("db copied...");
       return await openDatabase(path);
     }
   }
@@ -105,7 +105,7 @@ class DbHelper {
         : [];
     int s = counts.isNotEmpty? counts.reduce((value, element) => value + element):0;
     int sum = s;
-    print(sum);
+    // print(sum);
     List finalList = [];
     if (articlesList.isNotEmpty &&
         counts.isNotEmpty &&
