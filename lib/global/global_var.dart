@@ -35,7 +35,7 @@ List<String> yearsNameList = [
   "موردی در این زمینه یافت نشد",
 ];
     const Map<int, int> articlesPerYear = {
-      1401: 5,
+      1401: 7,
       1400: 37,
       1399: 28,
       1398: 51,
