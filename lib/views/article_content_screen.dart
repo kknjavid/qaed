@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qaed/controller/article_controller.dart';
 import 'package:qaed/global/custom_theme.dart';
 import 'package:qaed/global/search_highlight.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
 class ArticleContent extends StatelessWidget {
@@ -33,8 +34,15 @@ class ArticleContent extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () => Get.back(),
               ),
-              title: Text( controller.articles.first.date),
+              title: Text(controller.articles.first.date),
               actions: [
+                IconButton(
+                    onPressed: () {
+                      Share.share(
+                        "${controller.articles.first.title}\n${controller.articles.first.date}\n${controller.articles.first.detail}\n",
+                      );
+                    },
+                    icon: const Icon(Icons.share)),
                 IconButton(
                     onPressed: () {
                       Get.dialog(AlertDialog(
@@ -70,10 +78,8 @@ class ArticleContent extends StatelessWidget {
                 children: [
                   Container(
                     child: SelectableText.rich(
-                      
                       searchMode == 0
                           ? TextSpan(
-                            
                               children: highlightOccurrences(
                                   controller.articles.first.title, query!))
                           : TextSpan(text: controller.articles.first.title),
@@ -91,7 +97,8 @@ class ArticleContent extends StatelessWidget {
                             searchMode == 1
                                 ? TextSpan(
                                     children: highlightOccurrences(
-                                        controller.articles.first.detail, query!))
+                                        controller.articles.first.detail,
+                                        query!))
                                 : TextSpan(
                                     text: controller.articles.first.detail),
                             textAlign: TextAlign.justify,
