@@ -103,7 +103,7 @@ class DbHelper {
     String command =
         "(length($col)-length(replace($col, '$text', ''))) / length('$text')";
     var countsQuery = await _dbClient
-        .rawQuery("SELECT $command FROM $_table WHERE $col like '%$text%'");
+        .rawQuery("SELECT $command FROM $_table WHERE $col like '%$text%' ORDER BY -id");
     List counts = countsQuery.isNotEmpty
         ? countsQuery.map((e) => e[command]).toList()
         : [];
