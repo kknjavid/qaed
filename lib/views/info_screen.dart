@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qaed/global/custom_theme.dart';
 import 'package:qaed/global/info_desc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,7 +25,7 @@ class InfoScreen extends StatelessWidget {
               ...descText,
               
               launchButton(context: context,link: "sms:09178420970",label: "ارسال پیام",icon: Icons.message),
-              launchButton(context: context,link: "call:09178420970",label: "تماس تلفنی",icon: Icons.call),
+              launchButton(context: context,link: "tel:09178420970",label: "تماس تلفنی",icon: Icons.call),
             
             ],
           ),
@@ -50,7 +51,7 @@ class InfoScreen extends StatelessWidget {
 
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(Theme.of(context).appBarTheme.backgroundColor),
+                      MaterialStateProperty.all(mainColor),
                       maximumSize: MaterialStateProperty.all(MediaQuery.of(context).size),
                 ),
 
