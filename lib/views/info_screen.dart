@@ -13,7 +13,7 @@ class InfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-            color:  const Color.fromARGB(68, 156, 156, 156),
+          color: const Color.fromARGB(68, 156, 156, 156),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -21,41 +21,40 @@ class InfoScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-             
-               ...descText,
-        
-              ElevatedButton.icon(
-                  onPressed: () async {
-                    await launchUrl(Uri.parse("sms:09178420970"));
-                  },
-                  label: Icon(
-                    Icons.message,
-                    color: Theme.of(context).hintColor,
-                  ),
-                  icon: Text(
-                    "ارسال پیام",
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),),
-              ElevatedButton.icon(
-                  onPressed: () async {
-                    await launchUrl(Uri.parse("tel:09178420970"));
-                  },
-                  label: Icon(
-                    Icons.call,
-                    color: Theme.of(context).hintColor,
-                  ),
-                  icon: Text(
-                    "تماس تلفنی",
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),),
+              ...descText,
+              
+              launchButton(context: context,link: "sms:09178420970",label: "ارسال پیام",icon: Icons.message),
+              launchButton(context: context,link: "call:09178420970",label: "تماس تلفنی",icon: Icons.call),
+            
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget launchButton({required BuildContext context,required String link,required String label, required IconData icon}) {
+    return Container(
+      margin: const EdgeInsets.only(top: 5),
+      width: MediaQuery.of(context).size.width*9,
+      child: ElevatedButton.icon(
+                onPressed: () async {
+                  await launchUrl(Uri.parse(link));
+                },
+                label:  Icon(
+                  icon
+                ),
+                icon: Text(
+                  label
+                ),
+
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Theme.of(context).appBarTheme.backgroundColor),
+                      maximumSize: MaterialStateProperty.all(MediaQuery.of(context).size),
+                ),
+
+              ),
     );
   }
 }

@@ -43,6 +43,7 @@ class BookmarkScreen extends StatelessWidget {
                   title: Text(
                     favController.articles[index].title,
                     overflow: TextOverflow.ellipsis,
+                    
                   ),
                   subtitle: Text(
                     favController.articles[index].date,
