@@ -24,7 +24,7 @@ class InfoScreen extends StatelessWidget {
              
                ...descText,
         
-              TextButton.icon(
+              ElevatedButton.icon(
                   onPressed: () async {
                     await launchUrl(Uri.parse("sms:09178420970"));
                   },
@@ -38,7 +38,7 @@ class InfoScreen extends StatelessWidget {
                       color: Theme.of(context).hintColor,
                     ),
                   ),),
-              TextButton.icon(
+              ElevatedButton.icon(
                   onPressed: () async {
                     await launchUrl(Uri.parse("tel:09178420970"));
                   },

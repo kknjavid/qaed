@@ -39,7 +39,14 @@ class ArticleContent extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       Share.share(
-                        "${controller.articles.first.title}\n${controller.articles.first.date}\n${controller.articles.first.detail}\n",
+                        """نرم افزار قائد:
+                        
+                        ${controller.articles.first.title}
+                        
+                        ${controller.articles.first.date}
+                        
+                        ${controller.articles.first.detail}
+                        """,
                       );
                     },
                     icon: const Icon(Icons.share)),
