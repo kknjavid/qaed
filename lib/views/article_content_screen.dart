@@ -49,7 +49,7 @@ class ArticleContent extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                         title: SizedBox(
-                            height: 5,
+                            height: 20,
                             child: Obx(
                               () => Slider(
                                   value: controller.fontSize.value,
@@ -60,9 +60,12 @@ class ArticleContent extends StatelessWidget {
                                   min: 12,
                                   divisions: 10,
                                   thumbColor: mainColor,
+                                  
                                   onChanged: (value) {
                                     controller.changeFontSize(value);
-                                  }),
+                                  },
+                                  
+                                  ),
                             )),
                       ));
                     },
