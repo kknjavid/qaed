@@ -62,7 +62,9 @@ class DbHelper {
     var allSokhan = await _dbClient.query(_table,
         columns: ["id", "title", "date", "fav"],
         where: "fav=?",
-        whereArgs: [1]);
+        whereArgs: [1],
+        orderBy: "-id"
+        );
     List<Article> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Article.fromMap(e)).toList()
         : [];
@@ -92,7 +94,9 @@ class DbHelper {
     var allArticles = await _dbClient.query(_table,
         columns: ["id", "title", "date"],
         where: "$col LIKE ?",
-        whereArgs: ['%$text%']);
+        whereArgs: ['%$text%'],
+        orderBy: "-id",
+        );
     List<Article> articlesList = allArticles.isNotEmpty
         ? allArticles.map((e) => Article.fromMap(e)).toList()
         : [];
