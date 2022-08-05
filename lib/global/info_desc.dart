@@ -18,7 +18,7 @@ var descText = [
   const SizedBox(
     height: 5,
   ),
-  customText("کورش کاظمی نیا"),
+  // customText("مولف و برنامه نویس"),
 ];
 
 Text customText(String text) {

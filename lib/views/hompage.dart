@@ -28,7 +28,7 @@ class HomePage extends GetView {
                 Icons.nightlight,
                 color: Color.fromARGB(255, 16, 0, 61),
               ),
-              inactiveColor: const Color.fromARGB(103, 16, 0, 61),
+              inactiveColor: const Color.fromARGB(118, 20, 20, 20),
               activeColor: const Color.fromARGB(118, 255, 255, 255),
               activeIcon: const Icon(
                 Icons.sunny,
